@@ -239,6 +239,22 @@ static void putc(uint8_t ch)
 {
     SBI_CALL_1(SBI_CONSOLE_PUTCHAR, ch);
 }
+#elif defined(BOARD_rpi4b)
+#define UART_BASE 0xfe215040
+#define MU_IO 0x00
+#define MU_LSR 0x14
+#define MU_LSR_TXIDLE (1 << 6)
+
+static void
+putc(uint8_t ch)
+{
+    if (ch == '\n') {
+        putc('\r');
+    }
+
+    while (!(*UART_REG(MU_LSR) & MU_LSR_TXIDLE));
+    *UART_REG(MU_IO) = (ch & 0xff);
+}
 #else
 #error Board not defined
 #endif

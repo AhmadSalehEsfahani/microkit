@@ -3269,7 +3269,7 @@ fn main() -> Result<(), String> {
             "Microkit tool expects a kernel with hypervisor mode enabled on AArch64."
         );
         assert!(
-            kernel_config.arm_pa_size_bits.unwrap() == 40,
+            kernel_config.arm_pa_size_bits.unwrap() == 40 || kernel_config.arm_pa_size_bits.unwrap() == 44,
             "Microkit tool has assumptions about the ARM physical address size bits"
         );
     }

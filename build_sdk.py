@@ -202,36 +202,53 @@ SUPPORTED_BOARDS = (
         }
     ),
     BoardInfo(
-        name="qemu_virt_riscv64",
-        arch=KernelArch.RISCV64,
-        gcc_cpu=None,
-        loader_link_address=0x80200000,
-        kernel_options={
-            "KernelPlatform": "qemu-riscv-virt",
+        name="rpi4b",
+        arch=KernelArch.AARCH64,
+        gcc_cpu="cortex-a72",
+        loader_link_address=0x10000000,
+        kernel_options = {
+            "KernelPlatform": "bcm2711",
+            "KernelARMPlatform": "rpi4",
             "KernelIsMCS": True,
-            "QEMU_MEMORY": "2048",
-            "KernelRiscvExtD": True,
-            "KernelRiscvExtF": True,
+            "KernelArmExportPCNTUser": True,
+            "KernelArmHypervisorSupport": True,
+            "RPI4_MEMORY": 8192,
         },
-        examples={
-            "hello": Path("example/qemu_virt_riscv64/hello"),
-        }
+            examples = {
+                "hello" : Path("example/rpi4b/hello")
+            }
     ),
-    BoardInfo(
-        name="star64",
-        arch=KernelArch.RISCV64,
-        gcc_cpu=None,
-        loader_link_address=0x60000000,
-        kernel_options={
-            "KernelIsMCS": True,
-            "KernelPlatform": "star64",
-            "KernelRiscvExtD": True,
-            "KernelRiscvExtF": True,
-        },
-        examples={
-            "hello": Path("example/star64/hello")
-        }
-    ),
+    # BoardInfo(
+    #     name="qemu_virt_riscv64",
+    #     arch=KernelArch.RISCV64,
+    #     gcc_cpu=None,
+    #     loader_link_address=0x80200000,
+    #     kernel_options={
+    #         "KernelPlatform": "qemu-riscv-virt",
+    #         "KernelIsMCS": True,
+    #         "QEMU_MEMORY": "2048",
+    #         "KernelRiscvExtD": True,
+    #         "KernelRiscvExtF": True,
+    #     },
+    #     examples={
+    #         "hello": Path("example/qemu_virt_riscv64/hello"),
+    #     }
+    # ),
+    # BoardInfo(
+    #     name="star64",
+    #     arch=KernelArch.RISCV64,
+    #     gcc_cpu=None,
+    #     loader_link_address=0x60000000,
+    #     kernel_options={
+    #         "KernelIsMCS": True,
+    #         "KernelPlatform": "star64",
+    #         "KernelRiscvExtD": True,
+    #         "KernelRiscvExtF": True,
+    #     },
+    #     examples={
+    #         "hello": Path("example/star64/hello")
+    #     }
+    # ),
 )
 
 SUPPORTED_CONFIGS = (

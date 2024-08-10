@@ -852,7 +852,7 @@ void main(seL4_BootInfo *bi)
     __sel4_ipc_buffer = bi->ipcBuffer;
     puts("MON|INFO: Microkit Bootstrap\n");
 
-#if 0
+#if 1
     /* This can be useful to enable during new platform bring up
      * if there are problems
      */
